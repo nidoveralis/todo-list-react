@@ -1,0 +1,53 @@
+.item {
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -ms-border-radius: 25px;
+  -o-border-radius: 25px;
+  padding: 0 4%;
+  margin-bottom: 20px;
+}
+
+.priority {
+  width: 27px;
+  height: 27px;
+  background-color: red;
+  margin-right: 7px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container:first-child {
+  flex: 2;
+}
+
+.status {
+  margin-right: 2%;
+}
+
+.button {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 27px;
+  height: 27px;
+  margin: 0 7px;
+}
+
+.remove {
+  background-image: url('../../images/del.svg');
+}
+
+.edit {
+  background-image: url('../../images/edit.svg');
+}
