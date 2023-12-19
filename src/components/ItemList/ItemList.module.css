@@ -1,4 +1,5 @@
 .list {
   width: 80vw;
-  margin: 10vw auto;
+  margin: 35px auto 10vw;
+  padding: 0;
 }
