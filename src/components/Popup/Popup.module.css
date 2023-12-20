@@ -41,9 +41,8 @@
 }
 
 .form {
-  height: 40vh;
-  width: 40vw;
-  max-width: 390px;
+  width: 365px;
+  height: 325px;
   display: flex;
   flex-direction: column;
 }
@@ -51,7 +50,9 @@
 .field {
   border: none;
   padding: 0;
-  margin: 3% 0;
+  margin: 3% 0 2%;
+  display: flex;
+  flex-direction: column;
 }
 
 .select {
@@ -60,9 +61,8 @@
   cursor: pointer;
 }
 
-.field_priority {
-  display: flex;
-  flex-direction: column;
+.field_checkbox {
+  flex-direction: row;
 }
 
 .input {
@@ -81,11 +81,21 @@
   padding: 0;
 }
 
+.completed {
+  margin: 0;
+  margin-left: 3px;
+}
+
+.completed,
+.label {
+  color: #3f3f49;
+}
+
+.label {
+  margin-bottom: 3px;
+}
+
 .button {
-  margin-top: auto;
-  margin-bottom: 0;
-  margin-left: 0;
-  margin-right: auto;
   background-color: transparent;
   border: #ca8bfe 1px solid;
   padding: 7px 10px;
@@ -134,4 +144,20 @@
 .popup_active {
   visibility: visible;
   opacity: 1;
+}
+
+.container__button {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: auto;
+  margin-bottom: 0;
+}
+
+.button_close {
+  background-color: #3f3f49;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  width: 105px;
 }
