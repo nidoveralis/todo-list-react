@@ -6,22 +6,26 @@ import Popup from './components/Popup/Popup';
 
 function App() {
   const [isActivePopup, setIsActivePopup] = React.useState(false);
-  const [isopenItem, setIsopenItem] = React.useState();
+  const [item, setItem] = React.useState<number | null>(null);
 
   function openPopup() {
     setIsActivePopup(true);
-    //setIsopenItem(id);
   }
 
   function closePopup() {
     setIsActivePopup(false);
-    //setIsopenItem(id);
   }
+
+  function hendlerEditItem(id: number) {
+    openPopup();
+    setItem(0);
+  }
+
   return (
     <div className={styles.main}>
-      <Popup isActivePopup={isActivePopup} closePopup={closePopup}/>
+      <Popup isActivePopup={isActivePopup} item={item} closePopup={closePopup}/>
       <Form />
-      <ItemList openPopup={openPopup} />
+      <ItemList hendlerEditItem={hendlerEditItem} />
     </div>
   );
 }

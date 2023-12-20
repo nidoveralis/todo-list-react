@@ -2,11 +2,9 @@ import { useSelector } from 'react-redux';
 import styles from './ItemList.module.css';
 import Item from "../Item/Item";
 import { RootState } from '../../store/store';
-interface listProps {
-  openPopup: () => void;
-}
+import { ListProps } from '../../Interface';
  
-function ItemList({openPopup}: listProps) {
+function ItemList({hendlerEditItem}: ListProps) {
   const list = useSelector((state: RootState) => state.listTasks.todolist);
 
   return(
@@ -15,7 +13,7 @@ function ItemList({openPopup}: listProps) {
         <Item
           key={el.id}
           elem={el}
-          openPopup={openPopup}
+          hendlerEditItem={hendlerEditItem}
         />
       ))}
     </ul>

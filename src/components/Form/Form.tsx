@@ -7,13 +7,15 @@ function Form() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = React.useState(String);
   function handlerChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
-    setInputValue(e.target.value);
+      setInputValue(e.target.value);
   }
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    dispatch(addNewItem(inputValue));
-    setInputValue('');
+    if(inputValue !== '') {
+      dispatch(addNewItem(inputValue));
+      setInputValue('');
+    }
   }
   return(
     <form className={styles.form} onSubmit={(e) => submitForm(e)}>

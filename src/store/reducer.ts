@@ -1,11 +1,11 @@
 import { Reducer, AnyAction } from 'redux';
-import { ListProps, Item } from '../Interface';
+import { ArrayProps, Item } from '../Interface';
 
-const initialState: ListProps = {
+const initialState: ArrayProps = {
   todolist: []
 };
 
-export const listTasks: Reducer<ListProps, AnyAction> = (state = initialState, action) => {
+export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
       const today = new Date();
@@ -16,7 +16,7 @@ export const listTasks: Reducer<ListProps, AnyAction> = (state = initialState, a
             id: state.todolist.length,
             text: action.payload,
             status: false,
-            priority: 'low',
+            priority: 'high',
             day: `${date} ${month}`
           }
         };
@@ -29,6 +29,34 @@ export const listTasks: Reducer<ListProps, AnyAction> = (state = initialState, a
           ...state,
           todolist: updateList
         };
+        case 'COMPLETED_ITEM':
+          const updatedTodoList = state.todolist.map((el) => {
+            if (el.id === action.payload) {
+              return { ...el, status: !el.status };
+            }
+            return el;
+          });
+          return {
+            todolist: updatedTodoList
+          };
+      case 'EDIT_ITEM'://изменить задачу
+        const updatedList = state.todolist.map((el) => {
+          if(el.id === action.payload.id) {
+            return {
+              ...el,
+              id: action.payload.id,
+              text: action.payload.text,
+              status: action.payload.status,
+              priority: action.payload,
+              day: action.payload.day
+              }
+          }
+          return el;
+        });
+        return {
+          ...state,
+          todolist: updatedList
+      };
     default:
       
       return state;

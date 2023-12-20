@@ -1,3 +1,7 @@
+interface ListProps {
+  hendlerEditItem: (id: number) => void;
+}
+
 interface Item {
   elem:{
     id: number;
@@ -16,10 +20,10 @@ interface ItemProps {
     priority: string;
     day: string;
   };
-  openPopup: () => void;
+  hendlerEditItem: (id: number) => void;
 }
 
-interface ListProps {
+interface ArrayProps {
   todolist: Array<{
       id: number;
       text: string;
@@ -31,7 +35,8 @@ interface ListProps {
 
 interface PopupProps {
   isActivePopup: boolean;
+  item: number | null;
   closePopup: () => void;
 }
 
-export type {Item, ItemProps, ListProps, PopupProps}
+export type {ListProps, Item, ItemProps, ArrayProps, PopupProps}
