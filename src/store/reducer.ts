@@ -12,16 +12,14 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       const date = today.getDate();
       const month = today.toLocaleString('default', { month: 'long' });
       const newItem: Item = {
-          elem: {
             id: state.todolist.length,
             text: action.payload,
             status: false,
-            priority: 'high',
+            priority: 'low',
             day: `${date} ${month}`
-          }
         };
       return {
-        todolist: [...state.todolist, newItem.elem]
+        todolist: [...state.todolist, newItem]
       };
       case 'REMOVE_ITEM':
         const updateList = state.todolist.filter((el) => el.id !== action.payload)

@@ -104,6 +104,7 @@
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
+  cursor: pointer;
 }
 
 .close {
@@ -158,6 +159,5 @@
   background-color: #3f3f49;
   border: none;
   color: #fff;
-  cursor: pointer;
   width: 105px;
 }

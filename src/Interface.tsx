@@ -1,15 +1,14 @@
 interface ListProps {
   hendlerEditItem: (id: number) => void;
+  sortData:string;
 }
 
 interface Item {
-  elem:{
     id: number;
     text: string;
     status: boolean;
     priority: string;
     day: string;
-  }
 }
 
 interface ItemProps {
@@ -38,5 +37,8 @@ interface PopupProps {
   item: number | null;
   closePopup: () => void;
 }
+interface SortProp {
+  getSortData: (data: string) => void;
+}
 
-export type {ListProps, Item, ItemProps, ArrayProps, PopupProps}
+export type {ListProps, Item, ItemProps, ArrayProps, PopupProps, SortProp};

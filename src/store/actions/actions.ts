@@ -1,11 +1,5 @@
-import {ItemProps, Item} from '../../Interface';
-interface Items {
-    id: number;
-    text: string;
-    status: boolean;
-    priority: string;
-    day: string;
-}
+import {Item} from '../../Interface';
+
 export const addNewItem = (item: String) => {
   return {
     type: 'ADD_ITEM',
@@ -27,7 +21,7 @@ export const completedItem = (item: Number) => {
   }
 }
 
-export const editItem = (item: Items) => {
+export const editItem = (item: Item) => {
   return {
     type: 'EDIT_ITEM',
     payload: item

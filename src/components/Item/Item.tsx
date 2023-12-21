@@ -1,5 +1,4 @@
 import cn from 'classnames';
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import styles from './Item.module.css';
 import { ItemProps } from '../../Interface';
