@@ -21,7 +21,7 @@ function App() {
 
   function hendlerEditItem(id: number) {
     openPopup();
-    setItem(0);
+    setItem(id);
   }
 
   function getSortData(data: string) {

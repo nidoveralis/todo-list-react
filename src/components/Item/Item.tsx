@@ -1,12 +1,13 @@
 import cn from 'classnames';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './Item.module.css';
 import { ItemProps } from '../../Interface';
 import { removeItem, completedItem } from '../../store/actions/actions';
 
 function Item({elem, hendlerEditItem}: ItemProps) {
   const dispatch = useDispatch();
-  const priorityClass = elem.priority === 'high' ? styles.priority_high : styles.priority_low;
+  
+  const priorityClass = elem.priority === 'hight' ? styles.priority_high : styles.priority_low;
 
   function handlerClickButtonEdit() {
     hendlerEditItem(elem.id);

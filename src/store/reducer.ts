@@ -45,7 +45,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
               id: action.payload.id,
               text: action.payload.text,
               status: action.payload.status,
-              priority: action.payload,
+              priority: action.payload.priority,
               day: action.payload.day
               }
           }

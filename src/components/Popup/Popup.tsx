@@ -12,10 +12,11 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
   const dispatch = useDispatch();
   const list = useSelector((state: RootState) => state.listTasks.todolist);
   const openedItem = list.find((el) => el.id === item);
-  const [textValue, setTextValue] = React.useState<string>();
-  const [priorityValue, setPriorityValue] = React.useState<string>();
-  const [dataValue, setDataValue] = React.useState<string>();
-  const [statusValue, setStatusValue] = React.useState<boolean>();
+  const [isFormEdited, setIsFormEdited] = React.useState(false);
+  const [textValue, setTextValue] = React.useState<string>('');
+  const [priorityValue, setPriorityValue] = React.useState<string>('low');
+  const [dataValue, setDataValue] = React.useState<string>('');
+  const [statusValue, setStatusValue] = React.useState<boolean>(false);
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
   function handlerChangeText(e: React.ChangeEvent<HTMLInputElement>) {
@@ -24,7 +25,7 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
 
   function handlerClickOnSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    if(openedItem && textValue && priorityValue && statusValue && dataValue) {
+    if(openedItem && (openedItem.text !== textValue || openedItem.priority !== priorityValue || openedItem.status !== statusValue || openedItem.day !== dataValue)) {
       dispatch(editItem({
         id: openedItem.id,
         text: textValue,
@@ -32,8 +33,8 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
         priority: priorityValue,
         day: dataValue
       }));
-      handleClickPopup();
     }
+    handleClickPopup();
   }
 
   function handleChangePriority(e: React.ChangeEvent<HTMLSelectElement>) {
@@ -64,7 +65,19 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
       setDataValue(openedItem.day);
       setStatusValue(openedItem.status);
     }
-  }, [openedItem])
+  }, [openedItem]);
+
+  React.useEffect(() => {
+    if (openedItem) {
+      const isEdited = (
+        openedItem.text !== textValue ||
+        openedItem.priority !== priorityValue ||
+        openedItem.status !== statusValue ||
+        openedItem.day !== dataValue
+      );
+      setIsFormEdited(isEdited);
+    }
+  }, [openedItem, textValue, priorityValue, statusValue, dataValue]);
   return (
     <div className={cn(styles.popup, isActivePopup && styles.popup_active)}>
       <div className={styles.container}>
@@ -80,17 +93,17 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
           </fieldset>
           <fieldset className={styles.field}>
           <label className={styles.label}>Выполнить до</label>
-            <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="dd.MM.yyyy"  value={dataValue}/>
+            <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="dd.MM.yyyy" value={dataValue} />
           </fieldset> 
           <fieldset className={cn(styles.field, styles.field_priority)}>
             <label className={styles.label}>Приоритет</label>
-            <select className={styles.select} onChange={handleChangePriority}>
-              <option className={styles.option} value={'hight'} disabled={priorityValue === 'hight'}>Высокий</option>
-              <option className={styles.option} value={'low'} disabled={priorityValue === 'low'}>Низкий</option>
+            <select className={styles.select} onChange={handleChangePriority} defaultValue={priorityValue}>
+              <option className={styles.option} value={'hight'} >Высокий</option>
+              <option className={styles.option} value={'low'} >Низкий</option>
             </select>
           </fieldset>
           <div className={styles.container__button}>
-            <button type='submit' className={styles.button}>Сохранить</button>
+            <button type='submit' className={styles.button} disabled={!isFormEdited}>Сохранить</button>
             <button type='button' className={cn(styles.button, styles.button_close)} onClick={handleClickPopup}>Отмена</button>
           </div>
         </form>

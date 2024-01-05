@@ -23,6 +23,7 @@ function ItemList({hendlerEditItem, sortData}: ListProps) {
     }
     //list.filter
   },[sortData]);
+  
   return(
     <ul className={styles.list}>
       {list.map((el) => (
