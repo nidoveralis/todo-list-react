@@ -29,7 +29,14 @@ interface ArrayProps {
       status: boolean;
       priority: string;
       day: string;
-  }>
+  }>;
+  searchResults?: Array<{
+    id: number;
+    text: string;
+    status: boolean;
+    priority: string;
+    day: string;
+}>
 }
 
 interface PopupProps {

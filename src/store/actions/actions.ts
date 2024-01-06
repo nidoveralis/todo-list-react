@@ -27,3 +27,10 @@ export const editItem = (item: Item) => {
     payload: item
   }
 }
+
+export const searchItem = (data: string) => {
+  return {
+    type: 'SEARCH_ITEM',
+    payload: data
+  }
+}

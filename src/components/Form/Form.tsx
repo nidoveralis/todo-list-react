@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { addNewItem } from '../../store/actions/actions';
+import { addNewItem, searchItem } from '../../store/actions/actions';
 import styles from './Form.module.css';
 
 function Form() {
   const dispatch = useDispatch();
   const [inputValue, setInputValue] = React.useState(String);
   function handlerChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
-      setInputValue(e.target.value);
+    dispatch(searchItem(e.target.value));
+    setInputValue(e.target.value);
   }
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
