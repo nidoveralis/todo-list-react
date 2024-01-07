@@ -6,28 +6,13 @@ import Item from "../Item/Item";
 import { RootState } from '../../store/store';
 import { ListProps, ArrayProps } from '../../Interface';
  
-function ItemList({handlerEditItem, sortData}: ListProps) {
+function ItemList({handlerEditItem}: ListProps) {
   const [list, setlist] = React.useState<ArrayProps['todolist']>([]);
   const [notFind, setNotFind] = React.useState<boolean>(false);
   const todolist = useSelector((state: RootState) => state.listTasks.todolist);
   const searchResult = useSelector((state: RootState) => state.listTasks.searchResults);
   const searching = useSelector((state: RootState) => state.listTasks.searching);
   const classText = notFind && styles.text_active;
-  React.useEffect(()=>{
-    if(sortData === 'priority') {
-      const sortedList = list.sort((a,b) => {
-        if(a.priority === 'hight' && b.priority !== 'hight') {
-          return 1;
-        }
-        if(a.priority === 'low' && b.priority !== 'low') {
-          return -1;
-        }
-        return 0;
-      });
-      console.log(sortedList)
-    }
-    //list.filter
-  },[sortData]);
   
   React.useEffect(() => {
     if (searchResult && searchResult.length > 0) {

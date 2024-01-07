@@ -1,6 +1,5 @@
 interface ListProps {
   handlerEditItem: (id: number) => void;
-  sortData:string;
 }
 
 interface Item {
@@ -45,8 +44,5 @@ interface PopupProps {
   item: number | null;
   closePopup: () => void;
 }
-interface SortProp {
-  getSortData: (data: string) => void;
-}
 
-export type {ListProps, Item, ItemProps, ArrayProps, PopupProps, SortProp};
+export type {ListProps, Item, ItemProps, ArrayProps, PopupProps};

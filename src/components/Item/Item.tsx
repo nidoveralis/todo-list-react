@@ -1,6 +1,7 @@
 import cn from 'classnames';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styles from './Item.module.css';
+import { monthsList } from '../../constants';
 import { ItemProps } from '../../Interface';
 import { removeItem, completedItem } from '../../store/actions/actions';
 
@@ -8,6 +9,11 @@ function Item({elem, handlerEditItem}: ItemProps) {
   const dispatch = useDispatch();
   
   const priorityClass = elem.priority === 'hight' ? styles.priority_high : styles.priority_low;
+  const dateParts = elem.day.split('.');
+  const day = dateParts[0];
+  const month = dateParts[1];
+  const year = dateParts[2];
+  const formattedDate = `${day} ${monthsList[parseInt(month) - 1]} ${year}`;
 
   function handlerClickButtonEdit() {
     handlerEditItem(elem.id);
@@ -28,7 +34,7 @@ function Item({elem, handlerEditItem}: ItemProps) {
         <p className={cn(styles.text, elem.status && styles.text_active )}>{elem.text}</p>
       </div>
       <div className={cn(styles.container, elem.status && styles.container_active)}>
-        <div className={styles.day}>{elem.day}</div>
+        <div className={styles.day}>{formattedDate}</div>
         <button className={cn(styles.edit, styles.button)} onClick={handlerClickButtonEdit} ></button>
         <button className={cn(styles.remove, styles.button)} onClick={handlerClickButtonRemove} ></button>
       </div>

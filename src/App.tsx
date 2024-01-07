@@ -24,18 +24,14 @@ function App() {
     setItem(id);
   }
 
-  function getSortData(data: string) {
-    setSortData(data);
-  }
-
   return (
     <div className={styles.main}>
       <Popup isActivePopup={isActivePopup} item={item} closePopup={closePopup}/>
       <div className={styles.container}>
         <Form />
-        <ElementToSort getSortData={getSortData}/>
+        <ElementToSort />
       </div>
-      <ItemList handlerEditItem={handlerEditItem} sortData={sortData}/>
+      <ItemList handlerEditItem={handlerEditItem} />
     </div>
   );
 }

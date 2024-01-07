@@ -41,3 +41,21 @@ export const searching = (data: boolean) => {
     payload: data
   }
 }
+
+export const sortOnName = () => {
+  return {
+    type: 'SORT_ON_NAME'
+  }
+}
+
+export const sortOnData = () => {
+  return {
+    type: 'SORT_ON_DATA'
+  }
+}
+
+export const sortOnPriority = () => {
+  return {
+    type: 'SORT_ON_PRIORITY'
+  }
+}

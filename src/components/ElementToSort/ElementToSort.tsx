@@ -1,31 +1,12 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
 import cn from "classnames";
 import styles from './ElementToSort.module.css';
-import { SortProp } from "../../Interface";
+import { buttonList } from "../../constants";
+import { sortOnPriority, sortOnData, sortOnName } from '../../store/actions/actions';
 
-function ElementToSort({getSortData}: SortProp) {
-  const buttonList = 
-  [{
-    id: 0,
-    name:'Сортировать по:',
-    disable: 'true',
-    prop: ''
-  },
-  {
-    id: 2,
-    name:'По дате',
-    prop: 'day'
-  },
-  {
-    id: 3,
-    name:'Приоритету',
-    prop: 'priority'
-  },
-  {
-    id: 4,
-    name:'Имени',
-    prop: 'text'
-  }];
+function ElementToSort() {
+  const dispatch = useDispatch();
   const [isOpenMenu, setIsOpenMenu] = React.useState(false);
 
   function openMenu() {
@@ -34,7 +15,13 @@ function ElementToSort({getSortData}: SortProp) {
 
   function handleClickItemMenu(el: string) {
     setIsOpenMenu(false);
-    getSortData(el);
+    if (el === 'day') {
+      dispatch(sortOnData());
+    } else if (el === 'text') {
+      dispatch(sortOnName());
+    } else if (el === 'priority') {
+      dispatch(sortOnPriority());
+    }
   }
 
   return(

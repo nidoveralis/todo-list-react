@@ -1,5 +1,6 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
+import ru from "date-fns/locale/ru";
 import cn from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import styles from './Popup.module.css';
@@ -52,8 +53,7 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
   }
 
   const handleDateChange = (date: Date | null) => {
-    const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
-    const formattedDate = date ? `${date.getDate()} ${months[date.getMonth()]}` : '';
+    const formattedDate = date ? `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}` : '';
     setSelectedDate(date);
     setDataValue(formattedDate);
   };
@@ -93,7 +93,12 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
           </fieldset>
           <fieldset className={styles.field}>
           <label className={styles.label}>Выполнить до</label>
-            <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="dd.MM.yyyy" value={dataValue} />
+            <DatePicker
+              selected={selectedDate}
+            onChange={handleDateChange}
+            dateFormat="dd.MM.yyyy"
+            locale={ru}
+            value={dataValue} />
           </fieldset> 
           <fieldset className={cn(styles.field, styles.field_priority)}>
             <label className={styles.label}>Приоритет</label>

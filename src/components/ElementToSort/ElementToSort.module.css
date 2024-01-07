@@ -28,13 +28,22 @@
   list-style-type: none;
   padding: 0;
   display: none;
-  margin: 16px 0 0;
+  margin: 20px 0 0;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: absolute;
+  right: 10px;
+  z-index: 1;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  overflow: hidden;
 }
 
 .button_menu {
   width: 100%;
   text-align: start;
-  border-bottom: 1px solid #ca8bfe;
   padding: 7px;
 }
 
