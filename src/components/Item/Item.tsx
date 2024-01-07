@@ -4,13 +4,13 @@ import styles from './Item.module.css';
 import { ItemProps } from '../../Interface';
 import { removeItem, completedItem } from '../../store/actions/actions';
 
-function Item({elem, hendlerEditItem}: ItemProps) {
+function Item({elem, handlerEditItem}: ItemProps) {
   const dispatch = useDispatch();
   
   const priorityClass = elem.priority === 'hight' ? styles.priority_high : styles.priority_low;
 
   function handlerClickButtonEdit() {
-    hendlerEditItem(elem.id);
+    handlerEditItem(elem.id);
   }
 
   function handlerClickButtonRemove() {

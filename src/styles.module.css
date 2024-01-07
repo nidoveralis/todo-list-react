@@ -10,9 +10,16 @@ body {
 }
 
 .main {
+  width: 100vw;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 7vw;
+  margin: 7vw auto;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 3vw;
 }

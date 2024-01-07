@@ -1,5 +1,5 @@
 interface ListProps {
-  hendlerEditItem: (id: number) => void;
+  handlerEditItem: (id: number) => void;
   sortData:string;
 }
 
@@ -19,7 +19,7 @@ interface ItemProps {
     priority: string;
     day: string;
   };
-  hendlerEditItem: (id: number) => void;
+  handlerEditItem: (id: number) => void;
 }
 
 interface ArrayProps {
@@ -36,7 +36,8 @@ interface ArrayProps {
     status: boolean;
     priority: string;
     day: string;
-}>
+  }>;
+  searching?: boolean
 }
 
 interface PopupProps {

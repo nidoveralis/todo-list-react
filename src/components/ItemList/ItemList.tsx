@@ -6,13 +6,13 @@ import Item from "../Item/Item";
 import { RootState } from '../../store/store';
 import { ListProps, ArrayProps } from '../../Interface';
  
-function ItemList({hendlerEditItem, sortData}: ListProps) {
+function ItemList({handlerEditItem, sortData}: ListProps) {
   const [list, setlist] = React.useState<ArrayProps['todolist']>([]);
   const [notFind, setNotFind] = React.useState<boolean>(false);
   const todolist = useSelector((state: RootState) => state.listTasks.todolist);
   const searchResult = useSelector((state: RootState) => state.listTasks.searchResults);
+  const searching = useSelector((state: RootState) => state.listTasks.searching);
   const classText = notFind && styles.text_active;
-console.log(searchResult)
   React.useEffect(()=>{
     if(sortData === 'priority') {
       const sortedList = list.sort((a,b) => {
@@ -47,7 +47,7 @@ console.log(searchResult)
       setlist(todolist);
       setNotFind(false);
     }
-  }, []);
+  }, [searching]);
   return(
     <ul className={styles.list}>
       <p className={cn(styles.text, classText)}>Не найдено</p>
@@ -55,7 +55,7 @@ console.log(searchResult)
         <Item
           key={el.id}
           elem={el}
-          hendlerEditItem={hendlerEditItem}
+          handlerEditItem={handlerEditItem}
         />
       ))}
     </ul>

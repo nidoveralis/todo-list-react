@@ -19,7 +19,7 @@ function App() {
     setIsActivePopup(false);
   }
 
-  function hendlerEditItem(id: number) {
+  function handlerEditItem(id: number) {
     openPopup();
     setItem(id);
   }
@@ -31,9 +31,11 @@ function App() {
   return (
     <div className={styles.main}>
       <Popup isActivePopup={isActivePopup} item={item} closePopup={closePopup}/>
-      <Form />
-      <ElementToSort getSortData={getSortData}/>
-      <ItemList hendlerEditItem={hendlerEditItem} sortData={sortData}/>
+      <div className={styles.container}>
+        <Form />
+        <ElementToSort getSortData={getSortData}/>
+      </div>
+      <ItemList handlerEditItem={handlerEditItem} sortData={sortData}/>
     </div>
   );
 }

@@ -34,3 +34,10 @@ export const searchItem = (data: string) => {
     payload: data
   }
 }
+
+export const searching = (data: boolean) => {
+  return {
+    type: 'SEARCHING',
+    payload: data
+  }
+}

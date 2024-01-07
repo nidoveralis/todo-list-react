@@ -1,6 +1,6 @@
 .list {
   width: 80vw;
-  margin: 35px auto 10vw;
+  margin: 25px auto 10vw;
   padding: 0;
 }
 
@@ -8,10 +8,10 @@
   text-align: center;
   color: #fff;
   margin-top: 0;
-  display: none;
+  visibility: hidden;
   width: 100%;
 }
 
 .text_active {
-  display: inline-block;
+  visibility: visible;
 }
