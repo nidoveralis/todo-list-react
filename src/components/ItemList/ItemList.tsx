@@ -15,24 +15,25 @@ function ItemList({handlerEditItem}: ListProps) {
   const classText = notFind && styles.text_active;
   
   React.useEffect(() => {
-    if (searchResult && searchResult.length > 0) {
-      setlist(searchResult);
-      setNotFind(false);
-    } else if (searchResult && searchResult.length === 0) {
-      setlist(searchResult);
-      setNotFind(true);
-    } else {
-      setlist(todolist);
-      setNotFind(false);
-    }
-  }, [todolist, searchResult]);
-  
-  React.useEffect(() => {
     if (todolist) {
       setlist(todolist);
       setNotFind(false);
     }
   }, [searching]);
+
+  React.useEffect(() => {
+    if (searchResult && searchResult.length > 0) {
+      setlist(searchResult);
+      setNotFind(false);
+    }
+    if (searchResult && searchResult.length === 0 && todolist.length > 0 ) {
+      setlist(searchResult);
+      setNotFind(true);
+    } else if (searchResult && searchResult.length > 0) {
+      setlist(searchResult);
+      setNotFind(false);
+    }
+  }, [searchResult]);
   return(
     <ul className={styles.list}>
       <p className={cn(styles.text, classText)}>Не найдено</p>
