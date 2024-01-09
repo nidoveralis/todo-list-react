@@ -7,7 +7,7 @@ import { removeItem, completedItem } from '../../store/actions/actions';
 
 function Item({elem, handlerEditItem}: ItemProps) {
   const dispatch = useDispatch();
-  const priorityClass = elem.priority === 'hight' ? styles.priority_high : styles.priority_low;
+  const priorityClass = elem.priority === 'high' ? styles.priority_high : styles.priority_low;
   const dateParts = elem.day.split('.');
   const day = dateParts[0];
   const month = dateParts[1];
@@ -25,6 +25,7 @@ function Item({elem, handlerEditItem}: ItemProps) {
   function handlerClickCheckbox() {
     dispatch(completedItem(elem.id));
   }
+
   return(
     <li className={styles.item}>
       <div className={cn(styles.container, elem.status && styles.container_active)}>

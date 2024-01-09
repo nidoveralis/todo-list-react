@@ -8,8 +8,6 @@ import Popup from './components/Popup/Popup';
 function App() {
   const [isActivePopup, setIsActivePopup] = React.useState(false);
   const [item, setItem] = React.useState<number | null>(null);
-  const [sortData, setSortData] = React.useState<string>('');
-
 
   function openPopup() {
     setIsActivePopup(true);

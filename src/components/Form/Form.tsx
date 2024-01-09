@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addNewItem, searchItem, searching } from '../../store/actions/actions';
+import { addNewItem, searchItem, searching, sort } from '../../store/actions/actions';
 import { RootState } from '../../store/store';
 import styles from './Form.module.css';
 
 function Form() {
   const dispatch = useDispatch();
+  const sortType = useSelector((state: RootState) => state.listTasks.sortType);
   const todolist = useSelector((state: RootState) => state.listTasks.todolist);
   const [inputValue, setInputValue] = React.useState(String);
+  const [sortBy, setSortBy] = React.useState<string>(sortType || ''); 
 
   function handlerChangeInput(e: React.ChangeEvent<HTMLInputElement>) {
     dispatch(searchItem(e.target.value));
@@ -22,7 +24,7 @@ function Form() {
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if(inputValue !== '') {
+    if(inputValue !== '' && sortBy !== '') {
       dispatch(addNewItem(inputValue));
       setInputValue('');
     }

@@ -6,11 +6,13 @@ import { useSelector, useDispatch } from "react-redux";
 import styles from './Popup.module.css';
 import { RootState } from "../../store/store";
 import { PopupProps } from "../../Interface";
-import { editItem } from '../../store/actions/actions';
+import { editItem, sort } from '../../store/actions/actions';
 import "react-datepicker/dist/react-datepicker.css";
 
 function Popup({isActivePopup, item, closePopup}: PopupProps) {
   const dispatch = useDispatch();
+  const sortType = useSelector((state: RootState) => state.listTasks.sortType);
+  const [sortBy, setSortBy] = React.useState<string>(''); 
   const list = useSelector((state: RootState) => state.listTasks.todolist);
   const openedItem = list.find((el) => el.id === item);
   const [isFormEdited, setIsFormEdited] = React.useState(false);
@@ -22,7 +24,7 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
 
   function handlerChangeText(e: React.ChangeEvent<HTMLInputElement>) {
       setTextValue(e.target.value);
-  }
+  };
 
   function handlerClickOnSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,21 +38,22 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
       }));
     }
     handleClickPopup();
-  }
+  };
 
   function handleChangePriority(e: React.ChangeEvent<HTMLSelectElement>) {
     setPriorityValue(e.target.value)
-  }
+  };
 
   function handleClickPopup() {
     setTextValue('');
-    setPriorityValue('');
+    setPriorityValue('low');
     closePopup();
-  }
+    //dispatch(sort(sortBy));
+  };
 
   function handlerClickCheckbox() {
     setStatusValue(!statusValue);
-  }
+  };
 
   const handleDateChange = (date: Date | null) => {
     const formattedDate = date ? `${String(date.getDate()).padStart(2, '0')}.${String(date.getMonth() + 1).padStart(2, '0')}.${date.getFullYear()}` : '';
@@ -58,26 +61,37 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
     setDataValue(formattedDate);
   };
 
-  React.useEffect(()=> {
-    if(openedItem) {
+  function getData() {
+    if (openedItem) {
+      const day = openedItem.day;
+      const dateParts = day.split('.');
+      const formattedDay = `${dateParts[1]}/${dateParts[0]}/${dateParts[2]}`;
+      setSelectedDate(day ? new Date(formattedDay) : null);
+    }
+  };
+
+  React.useEffect(() => {
+    if (openedItem) {
+      console.log(priorityValue)
       setTextValue(openedItem.text);
       setPriorityValue(openedItem.priority);
       setDataValue(openedItem.day);
       setStatusValue(openedItem.status);
+      getData();
     }
-  }, [openedItem]);
+  }, [openedItem, isActivePopup]);
 
   React.useEffect(() => {
     if (openedItem) {
-      const isEdited = (
+      const isEdited =
         openedItem.text !== textValue ||
         openedItem.priority !== priorityValue ||
         openedItem.status !== statusValue ||
-        openedItem.day !== dataValue
-      );
+        openedItem.day !== dataValue;
       setIsFormEdited(isEdited);
     }
   }, [openedItem, textValue, priorityValue, statusValue, dataValue]);
+
   return (
     <div className={cn(styles.popup, isActivePopup && styles.popup_active)}>
       <div className={styles.container}>
@@ -95,15 +109,16 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
           <label className={styles.label}>Выполнить до</label>
             <DatePicker
               selected={selectedDate}
-            onChange={handleDateChange}
-            dateFormat="dd.MM.yyyy"
-            locale={ru}
-            value={dataValue} />
+              onChange={handleDateChange}
+              dateFormat="dd.MM.yyyy"
+              locale={ru}
+              value={dataValue}
+            />
           </fieldset> 
           <fieldset className={cn(styles.field, styles.field_priority)}>
             <label className={styles.label}>Приоритет</label>
-            <select className={styles.select} onChange={handleChangePriority} defaultValue={priorityValue}>
-              <option className={styles.option} value={'hight'} >Высокий</option>
+            <select className={styles.select} onChange={handleChangePriority} value={priorityValue}>
+              <option className={styles.option} value={'high'} >Высокий</option>
               <option className={styles.option} value={'low'} >Низкий</option>
             </select>
           </fieldset>

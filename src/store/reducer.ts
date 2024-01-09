@@ -8,6 +8,8 @@ const initialState: ArrayProps = {
   sortType: 'text'
 };
 
+let idCounter = 0;
+
 export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD_ITEM':
@@ -16,7 +18,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       const month = String(today.getMonth() + 1).padStart(2, '0');
       const year = today.getFullYear();
       const newItem: Item = {
-            id: state.todolist.length,
+            id: idCounter++,
             text: action.payload,
             status: false,
             priority: 'low',
@@ -112,10 +114,10 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
 
       case 'SORT_ON_NAME': // сортировать по имени
       const sortedNameList = state.todolist.slice().sort((a, b) => {
-        if (a.text > b.text) {
+        if (a.text.toLowerCase() > b.text.toLowerCase()) {
           return 1;
         }
-        if (a.text < b.text) {
+        if (a.text.toLowerCase() < b.text.toLowerCase()) {
           return -1;
         }
         return 0;
@@ -123,35 +125,33 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       return {
         ...state,
         todolist: sortedNameList
-        //searchResults: searchResults,
-        //searching: true
       };
 
       case 'SORT_ON_DATA': //сортировать по дате
-      const sortedDateList = [...state.todolist].sort((a, b) => {
-        const dateA = a.day.split('.').reverse().join('');
-        const dateB = b.day.split('.').reverse().join('');
-        return dateA.localeCompare(dateB);
-      });
-      return {
-        ...state,
-        todolist: sortedDateList
-      };
+        const sortedDateList = [...state.todolist].sort((a, b) => {
+          const dateA = a.day.split('.').reverse().join('');
+          const dateB = b.day.split('.').reverse().join('');
+          return dateA.localeCompare(dateB);
+        });
+        return {
+          ...state,
+          todolist: sortedDateList
+        };
 
       case 'SORT_ON_PRIORITY': //сортировать по приоритету
-      const sortedPriorityList = state.todolist.sort((a,b) => {
-        if(a.priority === 'hight' && b.priority !== 'hight') {
-          return -1;
-        }
-        if(a.priority === 'low' && b.priority !== 'low') {
-          return 1;
-        }
-        return 0;
-      });
-    return {
-      ...state,
-      todolist: sortedPriorityList
-    };
+        const sortedPriorityList = state.todolist.slice().sort((a, b) => {
+          if (a.priority === 'high' && b.priority !== 'high') {
+            return 1;
+          }
+          if (a.priority !== 'low' && b.priority === 'low') {
+            return -1;
+          }
+          return 0;
+        });
+        return {
+          ...state,
+          todolist: sortedPriorityList,
+        };
     
 
     default:
