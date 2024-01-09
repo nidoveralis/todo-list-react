@@ -1,13 +1,18 @@
 import React from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import cn from "classnames";
 import styles from './ElementToSort.module.css';
 import { buttonList } from "../../constants";
-import { sortOnPriority, sortOnData, sortOnName } from '../../store/actions/actions';
+import { sort, sortType } from '../../store/actions/actions';
+import { RootState } from '../../store/store';
 
 function ElementToSort() {
+
   const dispatch = useDispatch();
+  const sortType = useSelector((state: RootState) => state.listTasks.sortType);
   const [isOpenMenu, setIsOpenMenu] = React.useState(false);
+  const [sortBy, setSortBy] = React.useState('text'); //выбран
+
 
   function openMenu() {
     setIsOpenMenu(!isOpenMenu);
@@ -15,28 +20,26 @@ function ElementToSort() {
 
   function handleClickItemMenu(el: string) {
     setIsOpenMenu(false);
-    if (el === 'day') {
-      dispatch(sortOnData());
-    } else if (el === 'text') {
-      dispatch(sortOnName());
-    } else if (el === 'priority') {
-      dispatch(sortOnPriority());
-    }
+    setSortBy(el);
   }
+  React.useEffect(() => {
+    dispatch(sort(sortBy))
+  }, [sortBy])
 
-  return(
+  return (
     <div className={styles.sort}>
-      <button className={cn(styles.button, styles.button_icon)} onClick={openMenu}/>
+      <button className={cn(styles.button, styles.button_icon)} onClick={openMenu} />
       <ul className={cn(styles.menu, isOpenMenu && styles.menu_opened)}>
-        {buttonList.map((el) => 
+        <p className={styles.text}>Сортировать по:</p>
+        {buttonList.map((el) =>
           <li key={el.id}>
             <button
               type='button'
               className={cn(styles.button, styles.button_menu)}
-              disabled={el.id === 0 && true}
-              onClick={()=>handleClickItemMenu(el.prop)}
-              >{el.name}</button>
-            </li>
+              disabled={sortBy === el.prop}
+              onClick={() => handleClickItemMenu(el.prop)}
+            >{el.name}</button>
+          </li>
         )}
       </ul>
     </div>

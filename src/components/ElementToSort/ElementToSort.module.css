@@ -7,7 +7,6 @@
   border: none;
   margin: 0;
   padding: 0;
-  background-color: #fff;
   cursor: pointer;
 }
 
@@ -33,25 +32,32 @@
   position: absolute;
   right: 10px;
   z-index: 1;
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
-  overflow: hidden;
+  background-color: #fff;
+  padding: 7px;
 }
 
 .button_menu {
   width: 100%;
   text-align: start;
   padding: 7px;
+  font-size: 17px;
+  background-color: transparent;
 }
 
 .button_menu:disabled {
   cursor: auto;
   color: #000;
+  background-color: #3f3f491f;
 }
 
 .menu_opened {
   display: block;
+  font-size: 17px;
+}
+
+.text {
+  margin: 0;
+  padding: 7px;
+  padding-bottom: 12px;
+  color: #000;
 }

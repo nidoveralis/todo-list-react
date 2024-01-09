@@ -42,20 +42,26 @@ export const searching = (data: boolean) => {
   }
 }
 
-export const sortOnName = () => {
+export const sortType = (data: string) => {
   return {
-    type: 'SORT_ON_NAME'
+    type: 'SORT_TYPE',
+    payload: data
   }
 }
 
-export const sortOnData = () => {
-  return {
-    type: 'SORT_ON_DATA'
+export const sort = (data: string) => {
+  if (data === 'day') {
+    return {
+      type: 'SORT_ON_DATA'
+    }
+  } else  if (data === 'text') {
+    return {
+      type: 'SORT_ON_NAME'
+    }
+  } else {
+    return {
+      type: 'SORT_ON_PRIORITY'
+    }
   }
-}
-
-export const sortOnPriority = () => {
-  return {
-    type: 'SORT_ON_PRIORITY'
-  }
+ 
 }

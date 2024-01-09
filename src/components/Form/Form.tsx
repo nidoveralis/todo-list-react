@@ -17,6 +17,7 @@ function Form() {
   function handlerClearInput() {
     setInputValue('');
     dispatch(searching(false));
+    dispatch(searchItem(''));
   }
 
   function submitForm(e: React.FormEvent<HTMLFormElement>) {

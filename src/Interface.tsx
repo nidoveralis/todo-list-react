@@ -36,7 +36,8 @@ interface ArrayProps {
     priority: string;
     day: string;
   }>;
-  searching?: boolean
+  searching?: boolean,
+  sortType?: string
 }
 
 interface PopupProps {

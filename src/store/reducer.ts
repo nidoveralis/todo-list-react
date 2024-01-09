@@ -4,7 +4,8 @@ import { ArrayProps, Item } from '../Interface';
 const initialState: ArrayProps = {
   todolist: [],
   searchResults: [],
-  searching: false
+  searching: false,
+  sortType: 'text'
 };
 
 export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, action) => {
@@ -102,6 +103,13 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
         searching: false
       };
 
+      case 'SORT_TYPE': 
+      return {
+        ...state,
+        sortType: action.payload
+      };
+
+
       case 'SORT_ON_NAME': // сортировать по имени
       const sortedNameList = state.todolist.slice().sort((a, b) => {
         if (a.text > b.text) {
@@ -120,38 +128,31 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       };
 
       case 'SORT_ON_DATA': //сортировать по дате
-      const sortedDataList = state.todolist.sort((a, b) => {
+      const sortedDateList = [...state.todolist].sort((a, b) => {
         const dateA = a.day.split('.').reverse().join('');
         const dateB = b.day.split('.').reverse().join('');
-    
         return dateA.localeCompare(dateB);
       });
-      console.log(sortedDataList)
       return {
         ...state,
-        todolist: sortedDataList
-        //searchResults: searchResults,
-        //searching: true
+        todolist: sortedDateList
       };
 
       case 'SORT_ON_PRIORITY': //сортировать по приоритету
-        const sortedPriorityList = state.todolist.sort((a,b) => {
-          if(a.priority === 'hight' && b.priority !== 'hight') {
-            return -1;
-          }
-          if(a.priority === 'low' && b.priority !== 'low') {
-            return 1;
-          }
-          return 0;
-        });
-      return {
-        ...state,
-        todolist: sortedPriorityList
-        //searchResults: searchResults,
-        //searching: true
-      };
-
-
+      const sortedPriorityList = state.todolist.sort((a,b) => {
+        if(a.priority === 'hight' && b.priority !== 'hight') {
+          return -1;
+        }
+        if(a.priority === 'low' && b.priority !== 'low') {
+          return 1;
+        }
+        return 0;
+      });
+    return {
+      ...state,
+      todolist: sortedPriorityList
+    };
+    
 
     default:
       return state;

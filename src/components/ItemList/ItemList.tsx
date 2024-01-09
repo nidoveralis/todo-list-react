@@ -19,7 +19,7 @@ function ItemList({handlerEditItem}: ListProps) {
       setlist(todolist);
       setNotFind(false);
     }
-  }, [searching]);
+  }, [searching, todolist]);
 
   React.useEffect(() => {
     if (searchResult && searchResult.length > 0) {
@@ -34,6 +34,7 @@ function ItemList({handlerEditItem}: ListProps) {
       setNotFind(false);
     }
   }, [searchResult]);
+  console.log(todolist)
   return(
     <ul className={styles.list}>
       <p className={cn(styles.text, classText)}>Не найдено</p>

@@ -1,22 +1,16 @@
 export const buttonList = 
-  [{
+  [  {
     id: 0,
-    name:'Сортировать по:',
-    disable: 'true',
-    prop: ''
+    name:'Приоритету',
+    prop: 'priority'
   },
   {
-    id: 2,
+    id: 1,
     name:'По дате',
     prop: 'day'
   },
   {
     id: 3,
-    name:'Приоритету',
-    prop: 'priority'
-  },
-  {
-    id: 4,
     name:'Имени',
     prop: 'text'
   }];
