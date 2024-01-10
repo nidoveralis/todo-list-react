@@ -42,7 +42,7 @@ export const searching = (data: boolean) => {
   }
 }
 
-export const sortType = (data: string) => {
+export const changeSortType = (data: string) => {
   return {
     type: 'SORT_TYPE',
     payload: data
@@ -50,7 +50,6 @@ export const sortType = (data: string) => {
 }
 
 export const sort = (data: string) => {
-  console.log(data)
   if (data === 'day') {
     return {
       type: 'SORT_ON_DATA'

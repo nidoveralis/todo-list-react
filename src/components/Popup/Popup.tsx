@@ -9,10 +9,10 @@ import { PopupProps } from "../../Interface";
 import { editItem, sort } from '../../store/actions/actions';
 import "react-datepicker/dist/react-datepicker.css";
 
-function Popup({isActivePopup, item, closePopup}: PopupProps) {
+function Popup({ isActivePopup, item, closePopup }: PopupProps) {
   const dispatch = useDispatch();
   const sortType = useSelector((state: RootState) => state.listTasks.sortType);
-  const [sortBy, setSortBy] = React.useState<string>(''); 
+  const [sortBy, setSortBy] = React.useState<string>('');
   const list = useSelector((state: RootState) => state.listTasks.todolist);
   const openedItem = list.find((el) => el.id === item);
   const [isFormEdited, setIsFormEdited] = React.useState(false);
@@ -23,12 +23,12 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
   const [selectedDate, setSelectedDate] = React.useState<Date | null>(null);
 
   function handlerChangeText(e: React.ChangeEvent<HTMLInputElement>) {
-      setTextValue(e.target.value);
+    setTextValue(e.target.value);
   };
 
   function handlerClickOnSubmit(e: React.ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
-    if(openedItem && (openedItem.text !== textValue || openedItem.priority !== priorityValue || openedItem.status !== statusValue || openedItem.day !== dataValue)) {
+    if (openedItem && (openedItem.text !== textValue || openedItem.priority !== priorityValue || openedItem.status !== statusValue || openedItem.day !== dataValue)) {
       dispatch(editItem({
         id: openedItem.id,
         text: textValue,
@@ -37,6 +37,7 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
         day: dataValue
       }));
     }
+    dispatch(sort(sortBy));
     handleClickPopup();
   };
 
@@ -48,7 +49,6 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
     setTextValue('');
     setPriorityValue('low');
     closePopup();
-    //dispatch(sort(sortBy));
   };
 
   function handlerClickCheckbox() {
@@ -71,8 +71,13 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
   };
 
   React.useEffect(() => {
+    if (sortType) {
+      setSortBy(sortType);
+    }
+  }, [sortType]);
+
+  React.useEffect(() => {
     if (openedItem) {
-      console.log(priorityValue)
       setTextValue(openedItem.text);
       setPriorityValue(openedItem.priority);
       setDataValue(openedItem.day);
@@ -102,11 +107,11 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
             <input type="text" placeholder="Задача" className={styles.input} value={textValue} onChange={handlerChangeText} />
           </fieldset>
           <fieldset className={cn(styles.field, styles.field_checkbox)}>
-            <input type='checkbox' className={styles.status} onChange={handlerClickCheckbox} checked={statusValue}/>
+            <input type='checkbox' className={styles.status} onChange={handlerClickCheckbox} checked={statusValue} />
             <p className={styles.completed}>{statusValue ? 'Выполнено' : 'Не выполнено'}</p>
           </fieldset>
           <fieldset className={styles.field}>
-          <label className={styles.label}>Выполнить до</label>
+            <label className={styles.label}>Выполнить до</label>
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
@@ -114,7 +119,7 @@ function Popup({isActivePopup, item, closePopup}: PopupProps) {
               locale={ru}
               value={dataValue}
             />
-          </fieldset> 
+          </fieldset>
           <fieldset className={cn(styles.field, styles.field_priority)}>
             <label className={styles.label}>Приоритет</label>
             <select className={styles.select} onChange={handleChangePriority} value={priorityValue}>

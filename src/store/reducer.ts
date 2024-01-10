@@ -141,13 +141,14 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       case 'SORT_ON_PRIORITY': //сортировать по приоритету
         const sortedPriorityList = state.todolist.slice().sort((a, b) => {
           if (a.priority === 'high' && b.priority !== 'high') {
-            return 1;
+            return -1;
           }
           if (a.priority !== 'low' && b.priority === 'low') {
-            return -1;
+            return 1;
           }
           return 0;
         });
+        console.log(sortedPriorityList)
         return {
           ...state,
           todolist: sortedPriorityList,

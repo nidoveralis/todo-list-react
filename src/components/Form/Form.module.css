@@ -1,5 +1,5 @@
 .form {
-  width: 80vw;
+  flex: 1;
   background-color: #fff;
   padding: 17px;
   border-radius: 25px;
@@ -20,7 +20,7 @@
 }
 
 .input {
-  width: 85%;
+  width: 100%;
   border: none;
   color: #3f3f49;
 }

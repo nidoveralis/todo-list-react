@@ -27,6 +27,7 @@ function Form() {
     if(inputValue !== '' && sortBy !== '') {
       dispatch(addNewItem(inputValue));
       setInputValue('');
+      dispatch(sort(sortBy));
     }
   }
 
@@ -35,6 +36,13 @@ function Form() {
       dispatch(searchItem(inputValue));
     }
   }, [todolist]);
+
+  React.useEffect(() => {
+    if (sortType && sortType !== '') {
+      setSortBy(sortType);
+      dispatch(sort(sortType));
+    }
+  }, [sortType]);
 
   return(
     <form className={styles.form} onSubmit={(e) => submitForm(e)}>

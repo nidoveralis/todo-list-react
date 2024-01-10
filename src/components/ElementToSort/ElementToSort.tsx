@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cn from "classnames";
 import styles from './ElementToSort.module.css';
 import { buttonList } from "../../constants";
-import { sort } from '../../store/actions/actions';
+import { changeSortType, sort } from '../../store/actions/actions';
 import { RootState } from '../../store/store';
 
 function ElementToSort() {
@@ -15,15 +15,14 @@ function ElementToSort() {
 
   function openMenu() {
     setIsOpenMenu(!isOpenMenu);
-  }
+  };
 
   function handleClickItemMenu(el: string) {
     setIsOpenMenu(false);
     setSortBy(el);
-  }
-  React.useEffect(() => {
-    dispatch(sort(sortBy))
-  }, [sortBy]);
+    dispatch(changeSortType(el));
+    dispatch(sort(el));
+  };
 
   return (
     <div className={styles.sort}>
