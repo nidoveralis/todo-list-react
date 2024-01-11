@@ -27,7 +27,7 @@
 2. Установите необходимые зависимости ```npm i```
 3. Запустите проект ```npm run start```
 
-   Можно поиграть по этой [ссылке]([https://nidoveralis.github.io/Game/index.html](https://nidoveralis.github.io/todo-list-react/))
+   Можно поиграть по этой [ссылке](https://nidoveralis.github.io/todo-list-react)
 
 ## Ппланы по доработке проекта
 
