@@ -27,6 +27,8 @@
 2. Установите необходимые зависимости ```npm i```
 3. Запустите проект ```npm run start```
 
+   Можно поиграть по этой [ссылке]([https://nidoveralis.github.io/Game/index.html](https://nidoveralis.github.io/todo-list-react/))
+
 ## Ппланы по доработке проекта
 
 В будущем планируется добавить возможность изменения порядка задач с помощью функции drag and drop.
