@@ -1,7 +1,6 @@
 .form {
   flex: 1;
   background-color: #fff;
-  padding: 17px;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -10,7 +9,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
 }
 
 .fieldset {
@@ -43,3 +41,20 @@
   background-color: #ca8bfe;
 }
 
+@media screen and (min-width: 769px) {
+  .form {
+    padding: 17px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .input {
+    font-size: 14px;
+  }
+
+  .form {
+    padding: 14px;
+    margin: 0;
+  }
+}

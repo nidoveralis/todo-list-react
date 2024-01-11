@@ -23,4 +23,5 @@ body {
   align-items: center;
   gap: 3vw;
   width: 100%;
+  max-width: 900px;
 }

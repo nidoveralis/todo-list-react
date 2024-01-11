@@ -12,7 +12,7 @@ function Item({elem, handlerEditItem}: ItemProps) {
   const day = dateParts[0];
   const month = dateParts[1];
   const year = dateParts[2];
-  const formattedDate = `${day} ${monthsList[parseInt(month) - 1]} ${year}`;
+  const formattedDate = `${day} ${monthsList[parseInt(month) - 1]}`;
 
   function handlerClickButtonEdit() {
     handlerEditItem(elem.id);
@@ -33,8 +33,8 @@ function Item({elem, handlerEditItem}: ItemProps) {
         <input type='checkbox' className={styles.status} onChange={handlerClickCheckbox} checked={elem.status}/>
         <p className={cn(styles.text, elem.status && styles.text_active )}>{elem.text}</p>
       </div>
+      <div className={styles.day}>{formattedDate}</div>
       <div className={cn(styles.container, elem.status && styles.container_active)}>
-        <div className={styles.day}>{formattedDate}</div>
         <button className={cn(styles.edit, styles.button)} onClick={handlerClickButtonEdit} ></button>
         <button className={cn(styles.remove, styles.button)} onClick={handlerClickButtonRemove} ></button>
       </div>

@@ -3,6 +3,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 7px;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -57,9 +59,6 @@
   mask-position: center;
   -webkit-mask-position: center;
   background-color: #ca8bfe;
-  width: 27px;
-  height: 27px;
-  margin: 0 7px;
   cursor: pointer;
 }
 
@@ -89,6 +88,30 @@
   opacity: 0.5;
 }
 
+.day {
+  font-size: clamp(12px, 2vw, 14px);
+  text-wrap: nowrap;
+  color: #3f3f49b3;
+}
+
+@media screen and (min-width: 769px) {
+  .button {
+    width: 27px;
+    height: 27px;
+    margin: 0 7px;
+  }
+}
+
 @media screen and (max-width: 768px) {
-  
+  .day {
+    order: 4;
+    padding-left: 38px;
+    width: 100%;
+  }
+
+  .button {
+    width: 19px;
+    height: 19px;
+    margin: 0 3px;
+  }
 }

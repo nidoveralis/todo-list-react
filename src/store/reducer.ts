@@ -132,7 +132,9 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
           const dateA = a.day.split('.').reverse().join('');
           const dateB = b.day.split('.').reverse().join('');
           return dateA.localeCompare(dateB);
+          console.log(a.day)
         });
+        console.log(sortedDateList)
         return {
           ...state,
           todolist: sortedDateList
@@ -148,7 +150,6 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
           }
           return 0;
         });
-        console.log(sortedPriorityList)
         return {
           ...state,
           todolist: sortedPriorityList,

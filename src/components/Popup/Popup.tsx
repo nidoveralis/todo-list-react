@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 function Popup({ isActivePopup, item, closePopup }: PopupProps) {
   const dispatch = useDispatch();
+  const popupRef = React.useRef<HTMLDivElement | null>(null);
   const sortType = useSelector((state: RootState) => state.listTasks.sortType);
   const [sortBy, setSortBy] = React.useState<string>('');
   const list = useSelector((state: RootState) => state.listTasks.todolist);
@@ -97,9 +98,27 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
     }
   }, [openedItem, textValue, priorityValue, statusValue, dataValue]);
 
+  React.useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+       if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+        closePopup();
+      }
+    }
+
+    if (isActivePopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isActivePopup]);
+
   return (
     <div className={cn(styles.popup, isActivePopup && styles.popup_active)}>
-      <div className={styles.container}>
+      <div className={styles.container} ref={popupRef}>
         <button className={styles.close} onClick={handleClickPopup} />
         <form className={styles.form} onSubmit={handlerClickOnSubmit}>
           <h2 className={styles.title}>Редактировать задачу</h2>
