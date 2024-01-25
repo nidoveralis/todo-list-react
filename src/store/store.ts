@@ -1,7 +1,5 @@
 import { createStore, combineReducers } from 'redux';
 import { listTasks } from './reducer';
-//import { searchResults } from './searchResultsReducer';
-
 const rootReducer = combineReducers({
   listTasks
 });
