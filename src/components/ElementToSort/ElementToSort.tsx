@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import cn from "classnames";
 import styles from './ElementToSort.module.css';
-import { buttonList } from "../../constants";
+import { buttonList } from "../../utils/constants";
 import { changeSortType, sort } from '../../store/actions/actions';
 import { RootState } from '../../store/store';
 
@@ -12,7 +12,7 @@ function ElementToSort() {
   const elemSortRef = React.useRef<HTMLDivElement | null>(null);
   const sortType = useSelector((state: RootState) => state.listTasks.sortType);
   const [isOpenMenu, setIsOpenMenu] = React.useState<boolean>(false);
-  const [sortBy, setSortBy] = React.useState<string>(sortType || ''); 
+  const [sortBy, setSortBy] = React.useState<string>(sortType || '');
 
   function clickMenu() {
     setIsOpenMenu(!isOpenMenu);
@@ -28,7 +28,7 @@ function ElementToSort() {
   React.useEffect(() => {
 
     function handleClickOutside(e: MouseEvent) {
-       if (elemSortRef.current && !elemSortRef.current.contains(e.target as Node)) {
+      if (elemSortRef.current && !elemSortRef.current.contains(e.target as Node)) {
         clickMenu();
       }
     }

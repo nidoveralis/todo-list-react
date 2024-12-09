@@ -5,15 +5,18 @@ import styles from './ItemList.module.css';
 import Item from "../Item/Item";
 import { RootState } from '../../store/store';
 import { ListProps, ArrayProps } from '../../Interface';
- 
-function ItemList({handlerEditItem}: ListProps) {
-  const [list, setlist] = React.useState<ArrayProps['todolist']>([]);
-  const [notFind, setNotFind] = React.useState<boolean>(false);
+
+function ItemList({ handlerEditItem }: ListProps) {
   const todolist = useSelector((state: RootState) => state.listTasks.todolist);
   const searchResult = useSelector((state: RootState) => state.listTasks.searchResults);
   const searching = useSelector((state: RootState) => state.listTasks.searching);
-  const classText = notFind && styles.text_active;
-  
+  const error = useSelector((state: RootState) => state.listTasks.error);
+
+  const [list, setlist] = React.useState<ArrayProps['todolist']>([]);
+  const [notFind, setNotFind] = React.useState<boolean>(false);
+
+  const classText = (notFind && styles.text_active) || (error !== '' && styles.text_error);
+
   React.useEffect(() => {
     if (todolist) {
       setlist(todolist);
@@ -26,18 +29,18 @@ function ItemList({handlerEditItem}: ListProps) {
       setlist(searchResult);
       setNotFind(false);
     }
-    if (searchResult && searchResult.length === 0 && todolist.length > 0 ) {
+    if (searchResult && searchResult.length === 0 && todolist.length > 0) {
       setlist(searchResult);
       setNotFind(true);
     } else if (searchResult && searchResult.length > 0) {
       setlist(searchResult);
       setNotFind(false);
     }
-  }, [searchResult]);
-  
-  return(
+  }, [searchResult, todolist]);
+
+  return (
     <ul className={styles.list}>
-      <p className={cn(styles.text, classText)}>Не найдено</p>
+      <p className={cn(styles.text, classText)}>{error !== '' ? error : 'Не найдено'}</p>
       {list.map((el) => (
         <Item
           key={el.id}

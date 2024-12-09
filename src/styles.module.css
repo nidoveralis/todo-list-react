@@ -5,7 +5,7 @@ body {
   font-family: "Inter", "Arial", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #a18aff;
+  background-color: #f4f4f4;
   color: #3f3f49;
 }
 
@@ -22,6 +22,19 @@ body {
   display: flex;
   align-items: center;
   gap: 3vw;
-  width: 100%;
-  max-width: 900px;
+  width: 90vw;
+}
+
+.title {
+  color: #e9dad9;
+  font-size: 47px;
+}
+
+.react-datepicker-ignore-onclickoutside {
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  margin: 10px;
 }

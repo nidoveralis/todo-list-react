@@ -3,15 +3,15 @@ interface ListProps {
 }
 
 interface Item {
-    id: number;
-    text: string;
-    status: boolean;
-    priority: string;
-    day: string;
+  id: number;
+  text: string;
+  status: boolean;
+  priority: string;
+  day: string;
 }
 
 interface ItemProps {
-  elem:{
+  elem: {
     id: number;
     text: string;
     status: boolean;
@@ -23,11 +23,11 @@ interface ItemProps {
 
 interface ArrayProps {
   todolist: Array<{
-      id: number;
-      text: string;
-      status: boolean;
-      priority: string;
-      day: string;
+    id: number;
+    text: string;
+    status: boolean;
+    priority: string;
+    day: string;
   }>;
   searchResults?: Array<{
     id: number;
@@ -37,7 +37,8 @@ interface ArrayProps {
     day: string;
   }>;
   searching?: boolean,
-  sortType?: string
+  sortType?: string,
+  error?: string
 }
 
 interface PopupProps {
@@ -46,4 +47,4 @@ interface PopupProps {
   closePopup: () => void;
 }
 
-export type {ListProps, Item, ItemProps, ArrayProps, PopupProps};
+export type { ListProps, Item, ItemProps, ArrayProps, PopupProps };

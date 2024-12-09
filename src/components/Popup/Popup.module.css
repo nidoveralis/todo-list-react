@@ -60,11 +60,12 @@
 
 .field_checkbox {
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .input {
   border: none;
-  border-bottom: #ca8bfe 1px solid;
+  border-bottom: #e9dad9 1px solid;
   background-color: transparent;
   width: 100%;
 }
@@ -89,12 +90,12 @@
 }
 
 .label {
-  margin-bottom: 3px;
+  margin-bottom: 6px;
 }
 
 .button {
   background-color: transparent;
-  border: #ca8bfe 1px solid;
+  border: #e9dad9 1px solid;
   padding: 7px 10px;
   border-radius: 25px;
   -webkit-border-radius: 25px;

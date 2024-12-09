@@ -36,9 +36,11 @@
   margin: 0 7px;
   cursor: pointer;
   position: relative;
-  -webkit-mask-image: url('../../images/icon_close.svg');
+  mask-image: url('../../assets/icon_close.svg');
+  -webkit-mask-image: url('../../assets/icon_close.svg');
+  mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
-  background-color: #ca8bfe;
+  background-color: #d3d0d0;
 }
 
 @media screen and (min-width: 769px) {

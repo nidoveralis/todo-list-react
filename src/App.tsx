@@ -25,6 +25,7 @@ function App() {
   return (
     <div className={styles.main}>
       <Popup isActivePopup={isActivePopup} item={item} closePopup={closePopup}/>
+      <h1 className={styles.title}>todos</h1>
       <div className={styles.container}>
         <Form />
         <ElementToSort />

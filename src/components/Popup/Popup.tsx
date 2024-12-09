@@ -1,13 +1,17 @@
 import React from 'react';
-import DatePicker from "react-datepicker";
-import ru from "date-fns/locale/ru";
-import cn from "classnames";
-import { useSelector, useDispatch } from "react-redux";
-import styles from './Popup.module.css';
-import { RootState } from "../../store/store";
-import { PopupProps } from "../../Interface";
+import { useSelector, useDispatch } from 'react-redux';
+import DatePicker from 'react-datepicker';
+import ru from 'date-fns/locale/ru';
+import cn from 'classnames';
+
+import { RootState } from '../../store/store';
 import { editItem, sort } from '../../store/actions/actions';
-import "react-datepicker/dist/react-datepicker.css";
+
+import { PopupProps } from '../../Interface';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import styles from './Popup.module.css';
+import '../../styles.module.css';
 
 function Popup({ isActivePopup, item, closePopup }: PopupProps) {
   const dispatch = useDispatch();
@@ -85,6 +89,7 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
       setStatusValue(openedItem.status);
       getData();
     }
+    // eslint-disable-next-line
   }, [openedItem, isActivePopup]);
 
   React.useEffect(() => {
@@ -100,7 +105,7 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
 
   React.useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
-       if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
+      if (popupRef.current && !popupRef.current.contains(e.target as Node)) {
         closePopup();
       }
     }
@@ -114,6 +119,7 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
+    // eslint-disable-next-line
   }, [isActivePopup]);
 
   return (
@@ -123,7 +129,7 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
         <form className={styles.form} onSubmit={handlerClickOnSubmit}>
           <h2 className={styles.title}>Редактировать задачу</h2>
           <fieldset className={styles.field}>
-            <input type="text" placeholder="Задача" className={styles.input} value={textValue} onChange={handlerChangeText} />
+            <input type='text' placeholder='Задача' className={styles.input} value={textValue} onChange={handlerChangeText} />
           </fieldset>
           <fieldset className={cn(styles.field, styles.field_checkbox)}>
             <input type='checkbox' className={styles.status} onChange={handlerClickCheckbox} checked={statusValue} />
@@ -134,7 +140,7 @@ function Popup({ isActivePopup, item, closePopup }: PopupProps) {
             <DatePicker
               selected={selectedDate}
               onChange={handleDateChange}
-              dateFormat="dd.MM.yyyy"
+              dateFormat='dd.MM.yyyy'
               locale={ru}
               value={dataValue}
             />
