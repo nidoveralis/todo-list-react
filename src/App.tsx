@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import styles from './styles.module.css';
 import Form from './components/Form/Form';
 import ItemList from './components/ItemList/ItemList';
@@ -6,8 +6,8 @@ import ElementToSort from './components/ElementToSort/ElementToSort';
 import Popup from './components/Popup/Popup';
 
 function App() {
-  const [isActivePopup, setIsActivePopup] = React.useState(false);
-  const [item, setItem] = React.useState<number | null>(null);
+  const [isActivePopup, setIsActivePopup] = useState(false);
+  const [item, setItem] = useState<number | null>(null);
 
   function openPopup() {
     setIsActivePopup(true);

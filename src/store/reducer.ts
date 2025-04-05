@@ -20,7 +20,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       const year = today.getFullYear();
       const newItem: Item = {
         id: idCounter++,
-        text: action.payload,
+        task: action.payload,
         status: false,
         priority: 'low',
         day: `${date}.${month}.${year}`
@@ -64,7 +64,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
           return {
             ...el,
             id: action.payload.id,
-            text: action.payload.text,
+            task: action.payload.task,
             status: action.payload.status,
             priority: action.payload.priority,
             day: action.payload.day
@@ -77,7 +77,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
           return {
             ...el,
             id: action.payload.id,
-            text: action.payload.text,
+            task: action.payload.task,
             status: action.payload.status,
             priority: action.payload.priority,
             day: action.payload.day
@@ -94,7 +94,7 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       };
     case 'SEARCH_ITEM': // поиск задачи по списку
       const searchString = action.payload.toLowerCase();
-      const searchResults = state.todolist.filter((el) => el.text.toLowerCase().includes(searchString));
+      const searchResults = state.todolist.filter((el) => el.task.toLowerCase().includes(searchString));
       return {
         ...state,
         searchResults: searchResults,
@@ -112,10 +112,10 @@ export const listTasks: Reducer<ArrayProps, AnyAction> = (state = initialState, 
       };
     case 'SORT_ON_NAME': // сортировать по имени
       const sortedNameList = state.todolist.slice().sort((a, b) => {
-        if (a.text.toLowerCase() > b.text.toLowerCase()) {
+        if (a.task.toLowerCase() > b.task.toLowerCase()) {
           return 1;
         }
-        if (a.text.toLowerCase() < b.text.toLowerCase()) {
+        if (a.task.toLowerCase() < b.task.toLowerCase()) {
           return -1;
         }
         return 0;

@@ -4,7 +4,7 @@ interface ListProps {
 
 interface Item {
   id: number;
-  text: string;
+  task: string;
   status: boolean;
   priority: string;
   day: string;
@@ -13,7 +13,7 @@ interface Item {
 interface ItemProps {
   elem: {
     id: number;
-    text: string;
+    task: string;
     status: boolean;
     priority: string;
     day: string;
@@ -24,14 +24,14 @@ interface ItemProps {
 interface ArrayProps {
   todolist: Array<{
     id: number;
-    text: string;
+    task: string;
     status: boolean;
     priority: string;
     day: string;
   }>;
   searchResults?: Array<{
     id: number;
-    text: string;
+    task: string;
     status: boolean;
     priority: string;
     day: string;

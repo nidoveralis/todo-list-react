@@ -1,0 +1,15 @@
+input {
+  background-color: transparent;
+  width: calc(100% - 20px);
+  padding: 10px;
+  border: 1px solid #e9dad9;
+  border-radius: 8px;
+}
+
+input:focus {
+  outline: none;
+}
+
+.datePickerWrapper {
+  width: 100% !important;
+}

@@ -1,0 +1,18 @@
+select {
+  background-color: transparent;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #e9dad9;
+  border-radius: 8px;
+}
+
+select:focus {
+  outline: none;
+}
+
+.field {
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+}

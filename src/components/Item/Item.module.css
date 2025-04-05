@@ -11,7 +11,7 @@
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
   padding: 17px 4%;
-  margin: 0 50px 20px;
+  margin: 0 0 10px 20px;
 }
 
 .priority {
@@ -85,6 +85,11 @@
   -webkit-mask-position: center;
   background-color: #d3d0d0;
   cursor: pointer;
+  transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
 }
 
 .remove {
@@ -95,6 +100,11 @@
 .edit {
   mask-image: url('../../assets/edit.svg');
   -webkit-mask-imag: url('../../assets/edit.svg');
+}
+
+.remove:hover,
+.edit:hover {
+  background-color: #9e9d9d;
 }
 
 .text {

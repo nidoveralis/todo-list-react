@@ -1,30 +1,35 @@
-import React from 'react';
-import cn from 'classnames';
-import { useSelector } from 'react-redux';
-import styles from './ItemList.module.css';
+import { useState, useEffect } from "react";
+import cn from "classnames";
+import { useSelector } from "react-redux";
+import styles from "./ItemList.module.css";
 import Item from "../Item/Item";
-import { RootState } from '../../store/store';
-import { ListProps, ArrayProps } from '../../Interface';
+import { RootState } from "../../store/store";
+import { ListProps, ArrayProps } from "../../Interface";
 
 function ItemList({ handlerEditItem }: ListProps) {
   const todolist = useSelector((state: RootState) => state.listTasks.todolist);
-  const searchResult = useSelector((state: RootState) => state.listTasks.searchResults);
-  const searching = useSelector((state: RootState) => state.listTasks.searching);
+  const searchResult = useSelector(
+    (state: RootState) => state.listTasks.searchResults
+  );
+  const searching = useSelector(
+    (state: RootState) => state.listTasks.searching
+  );
   const error = useSelector((state: RootState) => state.listTasks.error);
 
-  const [list, setlist] = React.useState<ArrayProps['todolist']>([]);
-  const [notFind, setNotFind] = React.useState<boolean>(false);
+  const [list, setlist] = useState<ArrayProps["todolist"]>([]);
+  const [notFind, setNotFind] = useState<boolean>(false);
 
-  const classText = (notFind && styles.text_active) || (error !== '' && styles.text_error);
+  const classText =
+    (notFind && styles.text_active) || (error !== "" && styles.text_error);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (todolist) {
       setlist(todolist);
       setNotFind(false);
     }
   }, [searching, todolist]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (searchResult && searchResult.length > 0) {
       setlist(searchResult);
       setNotFind(false);
@@ -40,15 +45,13 @@ function ItemList({ handlerEditItem }: ListProps) {
 
   return (
     <ul className={styles.list}>
-      <p className={cn(styles.text, classText)}>{error !== '' ? error : 'Не найдено'}</p>
+      <p className={cn(styles.text, classText)}>
+        {!error || error !== "" ? error : "Не найдено"}
+      </p>
       {list.map((el) => (
-        <Item
-          key={el.id}
-          elem={el}
-          handlerEditItem={handlerEditItem}
-        />
+        <Item key={el.id} elem={el} handlerEditItem={handlerEditItem} />
       ))}
     </ul>
-  )
+  );
 }
 export default ItemList;

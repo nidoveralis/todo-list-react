@@ -17,6 +17,7 @@
 
 - JavaScript
 - React JS
+- React Form
 - TypeScript
 - CSS
 - HTML

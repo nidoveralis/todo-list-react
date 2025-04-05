@@ -42,7 +42,7 @@ function Item({ elem, handlerEditItem }: ItemProps) {
         />
         <label htmlFor={checkboxId} className={styles.customLabel}></label>
 
-        <p className={cn(styles.text, elem.status && styles.text_check)}>{elem.text}</p>
+        <p className={cn(styles.task, elem.status && styles.text_check)}>{elem.task}</p>
       </div>
       <div className={styles.day}>{formattedDate}</div>
       <div className={cn(styles.container, styles.container_right, elem.status && styles.container_active)}>

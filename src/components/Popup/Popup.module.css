@@ -10,17 +10,17 @@
   justify-content: center;
   visibility: hidden;
   opacity: 0;
-  transition: opacity .3s linear, visibility .3s linear;
-  -webkit-transition: opacity .3s linear, visibility .3s linear;
-  -moz-transition: opacity .3s linear, visibility .3s linear;
-  -ms-transition: opacity .3s linear, visibility .3s linear;
-  -o-transition: opacity .3s linear, visibility .3s linear;
+  transition: opacity 0.3s linear, visibility 0.3s linear;
+  -webkit-transition: opacity 0.3s linear, visibility 0.3s linear;
+  -moz-transition: opacity 0.3s linear, visibility 0.3s linear;
+  -ms-transition: opacity 0.3s linear, visibility 0.3s linear;
+  -o-transition: opacity 0.3s linear, visibility 0.3s linear;
 }
 
 .popup::before {
-  content: '';
+  content: "";
   position: absolute;
-  opacity: .4;
+  opacity: 0.4;
   background-color: #3f3f49;
   width: 100%;
   height: 100%;
@@ -31,66 +31,16 @@
   position: absolute;
   z-index: 3;
   background-color: #fff;
-  padding: 30px;
   border-radius: 25px;
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
   -ms-border-radius: 25px;
   -o-border-radius: 25px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-}
-
-.field {
-  border: none;
-  padding: 0;
-  margin: 3% 0 2%;
-  display: flex;
-  flex-direction: column;
-}
-
-.select {
-  width: 50%;
-  border: none;
-  cursor: pointer;
-}
-
-.field_checkbox {
-  flex-direction: row;
-  align-items: flex-start;
-}
-
-.input {
-  border: none;
-  border-bottom: #e9dad9 1px solid;
-  background-color: transparent;
-  width: 100%;
-}
-
-.select:focus,
-.input:focus {
-  outline: none;
+  min-width: 365px;
 }
 
 .title {
   padding: 0;
-}
-
-.completed {
-  margin: 0;
-  margin-left: 3px;
-}
-
-.completed,
-.label {
-  color: #3f3f49;
-}
-
-.label {
-  margin-bottom: 6px;
 }
 
 .button {
@@ -117,7 +67,7 @@
 }
 
 .close::before {
-  content: '';
+  content: "";
   position: absolute;
   background-color: #fff;
   height: 1px;
@@ -127,7 +77,7 @@
 }
 
 .close::after {
-  content: '';
+  content: "";
   position: absolute;
   background-color: #fff;
   height: 1px;
@@ -145,29 +95,9 @@
   opacity: 1;
 }
 
-.container__button {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: auto;
-  margin-bottom: 0;
-}
-
-.button_close {
-  background-color: #3f3f49;
-  border: none;
-  color: #fff;
-  width: 105px;
-}
-
 @media screen and (min-width: 769px) {
   .container {
     padding: 30px;
-  }
-
-  .form {
-    width: 365px;
-    height: 325px;
   }
 }
 

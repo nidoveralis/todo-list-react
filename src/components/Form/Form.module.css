@@ -41,12 +41,20 @@
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
   background-color: #d3d0d0;
+  transition: all .3s ease-in;
+  -webkit-transition: all .3s ease-in;
+  -moz-transition: all .3s ease-in;
+  -ms-transition: all .3s ease-in;
+  -o-transition: all .3s ease-in;
+}
+
+.clear:hover {
+  background-color: #9e9d9d;
 }
 
 @media screen and (min-width: 769px) {
   .form {
     padding: 17px;
-    margin-bottom: 20px;
   }
 }
 
